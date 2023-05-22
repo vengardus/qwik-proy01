@@ -1,18 +1,29 @@
-import { component$ } from '@builder.io/qwik';
+import { component$, useSignal } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
 export default component$(() => {
+  const launchId = useSignal(1)
   return (
-     <span class='text-7xl'>Hello World</span>
+    <>
+      <span class='text-xl'>Buscador simple</span>
+      <span>{launchId} </span>
+
+      <div></div>
+
+      <div class='mt-3'>
+        <button class='btn'>Anterior</button>
+        <button class='btn btn_primary'>Siguiente</button>
+      </div>
+    </>
   );
 });
 
 export const head: DocumentHead = {
-  title: 'Welcome to Qwik',
+  title: 'SpaceX Launch Logo',
   meta: [
     {
-      name: 'description',
-      content: 'Qwik site description',
+      name: 'qwik-proy01',
+      content: 'this is my first app in qwik',
     },
   ],
 };
