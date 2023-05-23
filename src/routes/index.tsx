@@ -6,7 +6,7 @@ export default component$(() => {
   const pokeId = useSignal(1)
   const frontSide = useSignal(true)
 
-  const changeId = $((value) => {
+  const changeId = $((value:number) => {
     if ( pokeId.value + value < 1) return
     pokeId.value += value
   })
