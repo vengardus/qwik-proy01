@@ -4,9 +4,15 @@ interface IProps {
   id: number,
   frontSide: boolean
   size?: number,
+  showImage?: boolean
 }
 
-export const PokemonImage = component$(({ id, size = 200, frontSide = true }: IProps) => {
+export const PokemonImage = component$(({ 
+    id, 
+    size = 200, 
+    frontSide = true,
+    showImage = true
+  }: IProps) => {
   const urlBase = (frontSide)
     ? 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
     : 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/'
@@ -21,17 +27,19 @@ export const PokemonImage = component$(({ id, size = 200, frontSide = true }: IP
     firstTime.ok = false
   })
 
-
-
   return (
-    <div class='flex'>
+    <div class='flex w-[${size}px] h-[${size}px]'>
       {!imageLoaded.value
-        && <span class={`flex w-[${size}px] h-[${size}px] justify-center items-center `}>Cargando...</span>
+        && <span class={`flex w-[${200}px] h-[${size}px] justify-center items-center  `}>Cargando..</span>
       }
 
       <img
         alt="logo"
-        class={!imageLoaded.value ? 'hidden' : 'block'}
+        class={ {
+          'hidden': !imageLoaded.value,
+          'brightness-0': !showImage,
+          
+        }}
         height={`${size}px`}
         onLoad$={() => { imageLoaded.value = true }}
         src={`${urlBase}${id}.png`}

@@ -5,6 +5,7 @@ import { PokemonImage } from '~/components/pokemons/PokemonImage';
 export default component$(() => {
   const pokeId = useSignal(1)
   const frontSide = useSignal(true)
+  const showImage = useSignal(true)
 
   const changeId = $((value:number) => {
     if ( pokeId.value + value < 1) return
@@ -15,15 +16,31 @@ export default component$(() => {
     frontSide.value = !frontSide.value
   })
 
+  const changeImageShow = $(() => {
+    showImage.value = !showImage.value
+  })
+
   return (
     <>
       <span class='text-xl'>Buscador simple</span>
       <span>{pokeId} </span>
 
-      <PokemonImage id={pokeId.value} frontSide={frontSide.value} />
+      <PokemonImage 
+        id={pokeId.value} 
+        frontSide={frontSide.value} 
+        showImage={showImage.value} />
 
       <div>
-        <button class='btn btn_primary' onClick$={() => changeImageSide() }>Cambiar lado</button>
+        <button 
+          class='btn btn_primary' 
+          onClick$={() => changeImageSide() }>
+            Cambiar lado
+        </button>
+        <button 
+          class='btn btn_primary' 
+          onClick$={() => changeImageShow() }>
+            Mostrar
+        </button>
       </div>
 
       <div class='mt-3'>
