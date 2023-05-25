@@ -37,7 +37,7 @@
   color: var(--qwik-light-blue);
 }
 
-@media (min-width: 450px) {
+@media (min-width: 375px) {
   .header li {
     display: inline-block;
   }
