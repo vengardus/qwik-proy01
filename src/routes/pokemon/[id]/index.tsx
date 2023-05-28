@@ -22,7 +22,7 @@ export default component$(() => {
   const pokemonId = usePokemonId()
   return (
     <>
-    Hola
+    Hola {pokemonId.value}
       <PokemonImage 
         id={pokemonId.value}
         frontSide={true}

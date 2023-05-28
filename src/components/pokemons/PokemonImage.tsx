@@ -7,6 +7,7 @@ interface IProps {
   size?: number,
   showImage?: boolean
 }
+
 const firstTime = {
   ok: true
 }
@@ -25,17 +26,16 @@ export const PokemonImage = component$(({
 
   useTask$(({ track }) => {
     track(() => id)
-    // if (!firstTime.ok) imageLoaded.value = false
-    firstTime.ok = false
+    console.log('track', id)
+    // if (!firstTime.ok) 
+    //   imageLoaded.value = false
+    // firstTime.ok = false
   })
 
   const goPokemon = $(() => {
-    console.log('Va')
     nav(`/pokemon/${id}/`)
   })
-
-  console.log(`${urlBase}${id}.png`, imageLoaded.value, firstTime, size)
-
+  
   return (
     <div class='flex w-[${size}px] h-[${size}px]'>
       {!imageLoaded.value

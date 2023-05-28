@@ -1,26 +1,68 @@
-import { component$ } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
-import { routeLoader$ } from '@builder.io/qwik-city';
+import { component$, useComputed$ } from '@builder.io/qwik';
+import { routeLoader$, Link, useLocation } from '@builder.io/qwik-city';
+import type { DocumentHead, RouteLocation } from '@builder.io/qwik-city';
+import type { IPokemonListResponse, IPokemonInfo } from '~/interface';
 
-const URL = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0'
+const URL_BASE = 'https://pokeapi.co/api/v2/pokemon'
 
-export const usePokemonList = routeLoader$( async() => {
-  const resp = await fetch(URL)
-  const data = await resp.json()
+export const usePokemonList = routeLoader$<IPokemonInfo[]>(async ({ query, redirect, pathname }) => {
+  const offset = Number(query.get('offset') || '0')
+  if ( offset < 0 || isNaN(offset) ) redirect(301, pathname)
   
-  return data
+  const resp = await fetch(`${URL_BASE}?limit=10&offset=${offset}`)
+  const data = await resp.json() as IPokemonListResponse
+
+  return data.results
 })
 
-export default component$(() => {
-  const pokemonList = usePokemonList().value.results
+// // Otra forma de obtebner los párametros de la url
+// const getParameter = (location: RouteLocation, parm: string) => {
+//   return location.url.searchParams.get(parm)
+// }
 
-  console.log(pokemonList)
+export default component$(() => {
+  const location = useLocation()
+  const pokemonList = usePokemonList().value
+
+  const currentOffset = useComputed$<number>(() => {
+    const offSetString = new URLSearchParams(location.url.search)
+    return Number(offSetString.get('offset') || 0);
+  });
 
   return (
-    <div class='flex flex-col'>
+    <>
+      <div class='flex flex-col gap-y-3 items-center mb-5'>
+        <span>Status</span>
+        <span>Página actual: {currentOffset}</span>
+        <span>Está cargando página: {location.isNavigating? 'Si':'No'}</span>
+      </div>
 
+      <div class='flex gap-x-5 mb-5'>
+        <Link
+          class='btn btn_primary'
+          href={`/pokemons/list-serv/?offset=${currentOffset.value - 10}`}
+        >
+          Anteriores
+        </Link>
+        <Link
+          class='btn btn_primary'
+          href={`/pokemons/list-serv/?offset=${currentOffset.value + 10}`}
+        >
+          Siguientes
+        </Link>
+      </div>
 
-    </div>
+      <div class='mb-3 text-3xl'>Listado </div>
+      <div class='flex gap-x-7 gap-y-3 w-[20rem] flex-wrap'>
+        {
+          pokemonList.map(pokemon => (
+            <div key={pokemon.name} class='w-[5rem]'>
+              <span class='capitalize'>{pokemon.name}</span>
+            </div>
+          ))
+        }
+      </div>
+    </>
   )
 });
 

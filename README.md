@@ -16,3 +16,12 @@ yarn start
 ```shell
 yarn qwik add tailwind
 ```
+
+## Developing
+
+- Generate interfase for fecth (VsCode)
+  - install extension: Paste JSON as code
+  - Copy any json response to clipboard
+  - In the Command Palette type: Paste JSON ... (enter)
+  - Paste
+
