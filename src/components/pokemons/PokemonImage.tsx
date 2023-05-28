@@ -8,9 +8,9 @@ interface IProps {
   showImage?: boolean
 }
 
-const firstTime = {
-  ok: true
-}
+// const firstTime = {
+//   ok: true
+// }
 
 export const PokemonImage = component$(({
   id,
