@@ -1,34 +1,37 @@
-import { $, component$, useSignal } from '@builder.io/qwik';
-import type { DocumentHead } from '@builder.io/qwik-city';
+import { $, component$, useContext } from '@builder.io/qwik';
+import { type DocumentHead } from '@builder.io/qwik-city';
 import { PokemonImage } from '~/components/pokemons/PokemonImage';
+import { PokemonGameContext } from '~/context';
 
 export default component$(() => {
-  const pokeId = useSignal(1)
-  const frontSide = useSignal(true)
-  const showImage = useSignal(true)
+  // const pokeId = useSignal(1)
+  // const frontSide = useSignal(true)
+  // const showImage = useSignal(true)
+
+  const pokemonGame = useContext(PokemonGameContext)
 
   const changeId = $((value:number) => {
-    if ( pokeId.value + value < 1) return
-    pokeId.value += value
+    if ( pokemonGame.pokeId + value < 1) return
+    pokemonGame.pokeId += value
   })
 
   const changeImageSide = $(() => {
-    frontSide.value = !frontSide.value
+    pokemonGame.frontSide = !pokemonGame.frontSide
   })
 
   const changeImageShow = $(() => {
-    showImage.value = !showImage.value
+    pokemonGame.showImage = !pokemonGame.showImage
   })
 
   return (
     <>
       <span class='text-xl'>Buscador simple</span>
-      <span>{pokeId} </span>
+      <span>{pokemonGame.pokeId} </span>
 
       <PokemonImage 
-        id={pokeId.value} 
-        frontSide={frontSide.value} 
-        showImage={showImage.value} />
+        id={pokemonGame.pokeId} 
+        frontSide={pokemonGame.frontSide} 
+        showImage={pokemonGame.showImage} />
 
       <div>
         <button 

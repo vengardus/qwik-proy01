@@ -1,4 +1,4 @@
-import { $, component$, useSignal, useTask$ } from "@builder.io/qwik";
+import { $, component$, useComputed$, useSignal, useTask$ } from "@builder.io/qwik";
 import { useNavigate } from "@builder.io/qwik-city";
 
 interface IProps {
@@ -8,9 +8,6 @@ interface IProps {
   showImage?: boolean
 }
 
-// const firstTime = {
-//   ok: true
-// }
 
 export const PokemonImage = component$(({
   id,
@@ -18,28 +15,27 @@ export const PokemonImage = component$(({
   frontSide = true,
   showImage = true
 }: IProps) => {
-  const urlBase = (frontSide)
-    ? 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
-    : 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/'
+  const urlBase = useComputed$(() => {
+    return (frontSide)
+      ? 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
+      : 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/'
+  })
   const imageLoaded = useSignal(true)
   const nav = useNavigate()
 
   useTask$(({ track }) => {
     track(() => id)
-    console.log('track', id)
-    // if (!firstTime.ok) 
-    //   imageLoaded.value = false
-    // firstTime.ok = false
+    imageLoaded.value = false
   })
 
   const goPokemon = $(() => {
     nav(`/pokemon/${id}/`)
   })
-  
+
   return (
-    <div class='flex w-[${size}px] h-[${size}px]'>
+    <div class={`flex w-[${size}px] h-[${size}px]`}>
       {!imageLoaded.value
-        && <span class={`flex w-[${200}px] h-[${size}px] justify-center items-center  `}>Cargando..</span>
+        && <span class={`flex w-full h-full justify-center items-center  `}>Cargando..</span>
       }
 
       <div onClick$={() => goPokemon()}>
@@ -51,7 +47,7 @@ export const PokemonImage = component$(({
           }}
           height={`${size}`}
           onLoad$={() => { imageLoaded.value = true }}
-          src={`${urlBase}${id}.png`}
+          src={`${urlBase.value}${id}.png`}
           width={`${size}`}
         />
       </div>
