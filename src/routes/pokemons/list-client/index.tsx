@@ -1,22 +1,27 @@
-import { $, component$, useOnDocument, useStore, useTask$} from '@builder.io/qwik';
+import { $, component$, useContext, useOnDocument, useTask$} from '@builder.io/qwik';
 import { PokemonImage } from '~/components/pokemons/PokemonImage';
+import { PokemonListContext } from '~/context';
 import { getSmallPokemons } from '~/helpers/getSmallPokemons';
-import type { ISmallPokemon } from '~/interface';
+// import type { ISmallPokemon } from '~/interface';
 
-interface IPokemonPageState {
-  currentPage : number,
-  isLoading   : boolean,
-  isAllLoaded : boolean,
-  pokemons    : ISmallPokemon[]
-}
+// interface IPokemonPageState {
+//   currentPage : number,
+//   isLoading   : boolean,
+//   isAllLoaded : boolean,
+//   pokemons    : ISmallPokemon[]
+// }
 
 export default component$(() => {
-  const pokemonState = useStore<IPokemonPageState>({
-    currentPage : 0,
-    isLoading   : false,
-    isAllLoaded : false,
-    pokemons    : []
-  })
+  // const pokemonState = useStore<IPokemonPageState>({
+  //   currentPage : 0,
+  //   isLoading   : false,
+  //   isAllLoaded : false,
+  //   pokemons    : []
+  // })
+  const pokemonState = useContext(PokemonListContext)
+   
+
+
 
   // Se ejecuta al reenderizar el componente una vez, ocurre en el lado del cliente
   // useVisibleTask$(async ({track}) => {
@@ -28,14 +33,14 @@ export default component$(() => {
   // })
 
   // Se ejecuta ANTES de que el componente se renderize por primera vez
-  // Se ejecuta por lo menos una vex en el servidor
+  // Se ejecuta por lo menos una vez en el servidor 
   useTask$(async ({track}) => {
-    // Cada vez que cambie pokemonState.CurrentPage se ejecutará useVisibleTask$
+    // Cada vez que cambie pokemonState.CurrentPage se ejecutará useTask$
     track(() => pokemonState.currentPage) 
 
     pokemonState.isLoading = true
     
-    const itemsByPage = 500
+    const itemsByPage = 30
     const pokemonCount = 1000
     const offset = 
     ( (pokemonState.currentPage * itemsByPage + itemsByPage) <= pokemonCount ) 
@@ -48,14 +53,14 @@ export default component$(() => {
     if ( ! offset ) 
       pokemonState.isAllLoaded = true
     else {
-      const pokemons = await getSmallPokemons(pokemonState.currentPage * 500, 500)
+      const pokemons = await getSmallPokemons(pokemonState.currentPage * 30, 30)
       pokemonState.pokemons = [ ...pokemonState.pokemons, ...pokemons]
     }
     pokemonState.isLoading = false
 
   })
 
-  useOnDocument('scroll', $((event) => {
+  useOnDocument('scroll', $(() => {
     const maxScroll = document.body.scrollHeight
     const currentScroll = window.scrollY + window.innerHeight
 
