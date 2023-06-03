@@ -14,10 +14,13 @@ export default component$(() => {
         </div>
         <ul class="list-disc list-inside pl-1">
           <li>
-            <Link href='/pokemons/list-serv/'>Serv1-List</Link>
+            <Link href='/pokemons/list-serv/'>Serv-List</Link>
           </li>
           <li>
             <Link href='/pokemons/list-client/'>Client-List</Link>
+          </li>
+          <li>
+            <Link href='/counter/'>Counter Hook</Link>
           </li>
         </ul>
       </div>
