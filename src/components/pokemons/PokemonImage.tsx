@@ -32,10 +32,11 @@ export const PokemonImage = component$(({
     nav(`/pokemon/${id}/`)
   })
 
+  console.log(size)
   return (
     <div class={`flex w-[${size}px] h-[${size}px]`}>
       {!imageLoaded.value
-        && <span class={`flex w-full h-full justify-center items-center  `}>Cargando..</span>
+        && <span class={`flex w-[${size}px] h-[${size}px] justify-center items-center `}>Cargando..</span>
       }
 
       <div onClick$={() => goPokemon()}>
