@@ -25,3 +25,5 @@ yarn qwik add tailwind
   - In the Command Palette type: Paste JSON ... (enter)
   - Paste
 
+- Environment variables
+  - Rename .env.template por .env 

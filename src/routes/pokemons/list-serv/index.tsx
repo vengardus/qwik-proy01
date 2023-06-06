@@ -22,6 +22,8 @@ export default component$(() => {
   const location = useLocation()
   const pokemonList = usePokemonList().value
 
+  
+
   const currentOffset = useComputed$<number>(() => {
     const offSetString = new URLSearchParams(location.url.search)
     return Number(offSetString.get('offset') || 0);
@@ -51,16 +53,26 @@ export default component$(() => {
       </div>
 
       <div class='mb-3 text-3xl'>Listado </div>
-      <div class='flex gap-x-7 gap-y-3 w-[20rem] flex-wrap'>
+      <div class='flex gap-x-20 gap-y-3 w-[25rem] flex-wrap'>
         {
           pokemonList.map(pokemon => (
-            <div key={pokemon.name} class='flex flex-col w-[5rem] items-center justify-center'>
-              <PokemonImage id={Number(pokemon.id)} frontSide={true}  />
-              <span class='capitalize'>{pokemon.name}</span>
+            <div id='pokemon_item'
+              key={pokemon.name} 
+              class='flex flex-col w-[5rem] items-center justify-center'
+            >
+              <PokemonImage 
+                id={Number(pokemon.id)} 
+                frontSide={true}  
+                name={pokemon.name}
+              />
+              {/* <span class='capitalize'>{pokemon.name}</span> */}
             </div>
           ))
         }
       </div>
+
+     
+
     </>
   )
 });

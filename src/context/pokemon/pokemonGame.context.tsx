@@ -1,7 +1,8 @@
 import { createContextId } from "@builder.io/qwik"
 
 export interface IPokemonGameState {
-  pokeId : number
+  pokeId    : number
+  pokeName  : string
   frontSide : boolean
   showImage : boolean
 }

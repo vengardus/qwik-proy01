@@ -1,16 +1,19 @@
 import { $, component$, useComputed$, useSignal, useTask$ } from "@builder.io/qwik";
 import { useNavigate } from "@builder.io/qwik-city";
+import { usePokemonGame } from "~/hooks/usePokemonGame";
 
 interface IProps {
-  id: number,
-  frontSide: boolean
-  size?: number,
+  id        : number,
+  name?     : string,
+  frontSide?: boolean
+  size?     : number,
   showImage?: boolean
 }
 
 
 export const PokemonImage = component$(({
   id,
+  name = '',
   size = 200,
   frontSide = true,
   showImage = true
@@ -22,6 +25,8 @@ export const PokemonImage = component$(({
   })
   const imageLoaded = useSignal(true)
   const nav = useNavigate()
+  const pokemonGame = usePokemonGame()
+
 
   useTask$(({ track }) => {
     track(() => id)
@@ -29,17 +34,17 @@ export const PokemonImage = component$(({
   })
 
   const goPokemon = $(() => {
+    pokemonGame.changeName(name)
     nav(`/pokemon/${id}/`)
   })
 
-  console.log(size)
   return (
     <div class={`flex w-[${size}px] h-[${size}px]`}>
       {!imageLoaded.value
-        && <span class={`flex w-[${size}px] h-[${size}px] justify-center items-center `}>Cargando..</span>
+        && <span class={`flex w-full h-full justify-center items-center `}>Cargando..</span>
       }
 
-      <div onClick$={() => goPokemon()}>
+      <div onClick$={() => goPokemon()} class='flex flex-col justify-center items-center'>
         <img
           alt="logo"
           class={{
@@ -51,6 +56,7 @@ export const PokemonImage = component$(({
           src={`${urlBase.value}${id}.png`}
           width={`${size}`}
         />
+        <span class='capitalize'>{name}</span>
       </div>
 
     </div>

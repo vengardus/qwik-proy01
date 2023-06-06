@@ -1,62 +1,35 @@
-import { $, component$, useContext } from '@builder.io/qwik';
+import { component$ } from '@builder.io/qwik';
 import { type DocumentHead } from '@builder.io/qwik-city';
 import { PokemonImage } from '~/components/pokemons/PokemonImage';
-import { PokemonGameContext } from '~/context';
+import { usePokemonGame } from '~/hooks/usePokemonGame';
 
 export default component$(() => {
-  // const pokeId = useSignal(1)
-  // const frontSide = useSignal(true)
-  // const showImage = useSignal(true)
-
-  const pokemonGame = useContext(PokemonGameContext)
-
-  const changeId = $((value:number) => {
-    if ( pokemonGame.pokeId + value < 1) return
-    pokemonGame.pokeId += value
-  })
-
-  const changeImageSide = $(() => {
-    pokemonGame.frontSide = !pokemonGame.frontSide
-  })
-
-  const changeImageShow = $(() => {
-    pokemonGame.showImage = !pokemonGame.showImage
-  })
+  const pokemonGame = usePokemonGame()
 
   return (
     <>
       <span class='text-xl'>Buscador simple</span>
-      <span>{pokemonGame.pokeId} </span>
+      <span>{pokemonGame.pokeId.value} </span>
 
-      <PokemonImage 
-        id={pokemonGame.pokeId} 
-        frontSide={pokemonGame.frontSide} 
-        showImage={pokemonGame.showImage} />
+      <PokemonImage
+        id={pokemonGame.pokeId.value}
+        frontSide={pokemonGame.frontSide.value}
+        showImage={pokemonGame.showImage.value} />
 
       <div>
-        <button 
-          class='btn btn_primary' 
-          onClick$={() => changeImageSide() }>
-            Cambiar lado
+        <button onClick$={pokemonGame.changeImageSide} class='btn btn_primary'>
+          Cambiar lado
         </button>
-        <button 
-          class='btn btn_primary' 
-          onClick$={() => changeImageShow() }>
-            Mostrar
+        <button onClick$={pokemonGame.changeImageShow} class='btn btn_primary'>
+          Mostrar
         </button>
       </div>
 
       <div class='mt-3'>
-        <button
-          class='btn'
-          onClick$={() => changeId(-1) }
-        >
+        <button onClick$={() => pokemonGame.changeId(-1)} class='btn'>
           Anterior
         </button>
-        <button
-          class='btn btn_primary'
-          onClick$={() => changeId(1)}
-        >
+        <button onClick$={() => pokemonGame.changeId(1)} class='btn btn_primary'>
           Siguiente
         </button>
       </div>
