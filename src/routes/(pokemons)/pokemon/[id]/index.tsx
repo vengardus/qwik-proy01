@@ -22,10 +22,10 @@ export const usePokemonId = routeLoader$<number>(
 
 export default component$(() => {
   const pokemonId = usePokemonId()
-
+  
   // const pokemonGame = useContext(PokemonGameContext)
   const pokemonGame = usePokemonGame()
-
+  
   const showModal = useSignal(false)
 
   const chatGptResponse = useSignal('')

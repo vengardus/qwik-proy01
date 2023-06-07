@@ -44,8 +44,12 @@ export const PokemonImage = component$(({
         && <span class={`flex w-full h-full justify-center items-center `}>Cargando..</span>
       }
 
-      <div onClick$={() => goPokemon()} class='flex flex-col justify-center items-center'>
+      <div 
+        onClick$={() => goPokemon()} 
+        class='flex flex-col justify-center items-center'
+      >
         <img
+          id='pokemon_image'
           alt="logo"
           class={{
             'hidden': !imageLoaded.value,

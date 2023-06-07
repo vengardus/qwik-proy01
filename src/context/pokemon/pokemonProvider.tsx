@@ -6,6 +6,7 @@ import { type IPokemonListSate, PokemonListContext } from "./pokemonList.context
 export const PokemonProvider = component$(() => {
   const pokemonGame = useStore<IPokemonGameState>({
     pokeId: 4,
+    pokeName: '',
     showImage: false,
     frontSide: true
   })

@@ -27,3 +27,9 @@ yarn qwik add tailwind
 
 - Environment variables
   - Rename .env.template por .env 
+
+- Consulting open AI
+
+```shell
+yarn add openai
+```
