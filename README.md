@@ -26,7 +26,7 @@ yarn qwik add tailwind
   - Paste
 
 - Environment variables
-  - Rename .env.template por .env 
+  - Rename .env.template por .env  
 
 - Consulting open AI
 
@@ -35,5 +35,5 @@ yarn add openai
 ```
 
 - Forms
-  - Qwik comes integrated with the Typescript library Zod
-
+  - use routeAction$
+  - Validate Forms: Qwik comes integrated with the Typescript library Zod
