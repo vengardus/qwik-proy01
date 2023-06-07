@@ -1,57 +1,54 @@
-import { component$, useStore, useStylesScoped$, $, useComputed$ } from '@builder.io/qwik';
+import { component$, useStylesScoped$ } from '@builder.io/qwik';
+import { Form, routeAction$ } from '@builder.io/qwik-city';
 
 import styles from './login.css?inline';
 
+export const useLoginUserAction = routeAction$((data, event) => {
+  const { email, password } = data
+  console.log(email, password)
+
+  if (email == 'ismytv@gmail.com' && password == '1234567') {
+    return {
+      success: true,
+      jwt: 'my_jwt'
+    }
+  }
+
+  return {
+    success: false,
+  }
+
+
+})
+
 export default component$(() => {
-
-  const formState = useStore({
-    email   : '',
-    password: '',
-    formPosted: false
-  })
-
-  const emailError = useComputed$(() => {
-    return formState.email.includes("@")? '' : 'not-valid'
-  })
-  const passwordError = useComputed$(() => {
-    return (formState.password.length > 6)? '' : 'not-valid'
-  })
-
-  const onSubmit = $(() => {
-    formState.formPosted = true
-    console.log(formState.email, formState.password)
-  })
+  const action = useLoginUserAction()
 
   useStylesScoped$(styles);
 
   return (
-    <form 
-      onSubmit$={onSubmit}
-      class="login-form" preventdefault:submit>
+    <Form
+      action={action}
+      class="login-form mt-7">
       <div class="relative">
-        <input 
-          value={formState.email}
-          class={ (formState.formPosted)? emailError.value : ''}
-          onInput$={(event) => formState.email = (event.target as HTMLInputElement).value}
-          name="email" type="text" placeholder="Email address" />
+        <input name="email" type="text" placeholder="Email address" />
         <label for="email">Email Address</label>
       </div>
       <div class="relative">
-        <input 
-          value={formState.password} 
-          class={ (formState.formPosted)? passwordError.value : ''}
-          onInput$={(event) => formState.password = (event.target as HTMLInputElement).value}
-          id="password" name="password" type="password" placeholder="Password" />
+        <input name="password" type="password" placeholder="Password" />
         <label for="password">Password</label>
       </div>
       <div class="relative">
         <button type='submit'>Ingresar</button>
       </div>
 
+      <>
+        { action.value?.success && <div>{`Usuario autenticado con ${action.value.jwt}`}</div>}
+      </>
 
       <code>
-                { JSON.stringify( formState, undefined , 2 ) }
-            </code>
-    </form>
+        {JSON.stringify(action.value, undefined, 2)}
+      </code>
+    </Form>
   )
 });

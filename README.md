@@ -33,3 +33,7 @@ yarn qwik add tailwind
 ```shell
 yarn add openai
 ```
+
+- Forms
+  - Qwik comes integrated with the Typescript library Zod
+
