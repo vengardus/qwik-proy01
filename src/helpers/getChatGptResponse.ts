@@ -7,7 +7,7 @@ const openai = new OpenAIApi(configuration);
 
 export const getChatGptResponseAboutPokemon = async (pokemonName: string): Promise<string> => {
   delete configuration.baseOptions.headers['User-Agent']
-
+  
   const response = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: `Escribe datos interesantes sobre el pokemon ${pokemonName}`,

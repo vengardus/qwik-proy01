@@ -92,7 +92,7 @@ export default component$(() => {
           />
           <span>
             { (chatGptResponse.value != '' )
-              ? `${chatGptResponse}`
+              ? `${chatGptResponse.value}`
               : 'Preguntando a chatGpt...'
             }
           </span>

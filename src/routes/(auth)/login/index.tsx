@@ -5,9 +5,8 @@ import styles from './login.css?inline';
 
 export const useLoginUserAction = routeAction$((data, {cookie, redirect}) => {
   const { email, password } = data
-  console.log(email, password)
 
-  if (email == 'ismytv@gmail.com' && password == '1234567') {
+  if (email == 'ismytv@gmail.com' && password == import.meta.env.PUBLIC_USER_PASSWORD ) {
     cookie.set('jwt', 'my_jwt', {secure:true, path:'/'})
     redirect(302, '/')
   }
