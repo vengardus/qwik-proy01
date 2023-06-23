@@ -5,7 +5,7 @@ export default component$(() => {
   useStyles$(styles);
 
   return (
-    <div class='flex flex-col justify-center items-center'>
+    <div class='flex flex-col '>
       <Slot />
     </div>
   );

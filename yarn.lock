@@ -510,6 +510,20 @@
     "@typescript-eslint/types" "5.59.5"
     eslint-visitor-keys "^3.3.0"
 
+"@unpic/core@^0.0.24":
+  version "0.0.24"
+  resolved "https://registry.yarnpkg.com/@unpic/core/-/core-0.0.24.tgz#f357c4ee5957673e452a9aad5718819f15bc2cfc"
+  integrity sha512-HFa7ry3iNYfIOkaWGb0N/w1sxt6MAyUfoXXOvjyz50vtomDUbxK4krcRcQWIca64bORQKncxeJbGETRQLF20WQ==
+  dependencies:
+    unpic "^3.6.1"
+
+"@unpic/qwik@^0.0.19":
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/@unpic/qwik/-/qwik-0.0.19.tgz#183828b14b0074e53a9db5236b2dae69781e52c8"
+  integrity sha512-asbwaA0RF3StVJ+OyEwBNtOLvkgS4eFFPwWQoKPnjrZVZE+DrYs56713zpiMinICBsT30171LriidBuCZHWcGg==
+  dependencies:
+    "@unpic/core" "^0.0.24"
+
 accepts@~1.3.5, accepts@~1.3.8:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-1.3.8.tgz#0bf0be125b67014adcb0b0921e62db7bffe16b2e"
@@ -3223,6 +3237,11 @@ unist-util-visit@^4.0.0:
     "@types/unist" "^2.0.0"
     unist-util-is "^5.0.0"
     unist-util-visit-parents "^5.1.1"
+
+unpic@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/unpic/-/unpic-3.6.1.tgz#c21dbbc91f8ff57524cb45acd67482d39de706ff"
+  integrity sha512-4/ZAW3vXkvU2tpyuuAaIrlg58rh55EfzCFDJCxaaua/Ru8Q5f3bABjh5KQtQqRULzV6OaT05PF2pB6h1by98sg==
 
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"

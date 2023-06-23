@@ -99,8 +99,8 @@ export default component$(() => {
         </button>
       </div>
 
-      <div class='mb-3 text-3xl'>Listado </div>
-      <div class='flex gap-x-20 gap-y-3 w-[60%] flex-wrap justify-center'>
+      <div class='mb-3 text-2xl md:text-3xl'>Listado Client (Scroll update) </div>
+      <div class='flex gap-x-20 gap-y-3 w-[90%] md:w-[100%] flex-wrap justify-center'>
         {
           pokemonState.pokemons.map(pokemon => (
             <div key={pokemon.id} class='flex flex-col w-[5rem] items-center justify-center'>

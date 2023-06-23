@@ -4,13 +4,14 @@ import ModalStyles from './modal.css?inline';
 interface IProps {
   showModal : boolean,
   closeModal: PropFunction<() => void>,
-  size?     : 'sm'|'md'|'lg'
+  // size?     : 'sm'|'md'|'lg'|'xl'
+  size?     : string
 }
 
 export const Modal = component$(({ 
     showModal, 
     closeModal,
-    size='sm'
+    size='w-6/12'
   }: IProps) => {
   useStylesScoped$(ModalStyles);
 
@@ -25,11 +26,11 @@ export const Modal = component$(({
           closeModal()
       }}
     >
-      <div id='modal_content' class={`modal-content modal-${size}`}>
+      <div id='modal_content' class={`modal-content ${size}`}>
 
         <div class="mt-3 text-center">
 
-          <h3 class="modal-title"><Slot name='title' /></h3>
+          <h3 class="modal-title "><Slot name='title' /></h3>
 
           <div class="mt-2 px-7 py-3">
             <div class="modal-content-text">

@@ -22,8 +22,6 @@ export default component$(() => {
   const location = useLocation()
   const pokemonList = usePokemonList().value
 
-  
-
   const currentOffset = useComputed$<number>(() => {
     const offSetString = new URLSearchParams(location.url.search)
     return Number(offSetString.get('offset') || 0);
@@ -31,7 +29,7 @@ export default component$(() => {
 
   return (
     <>
-      <div class='flex flex-col gap-y-3 items-center mb-5'>
+      <div class='flex flex-col gap-y-3 items-center mb-5 px-10'>
         <span class='text-2xl'>Status</span>
         <span>Página actual: {currentOffset}</span>
         <span>Está cargando página: {location.isNavigating? 'Si':'No'}</span>
@@ -39,7 +37,7 @@ export default component$(() => {
 
       <div class='flex gap-x-5 mb-5'>
         <Link
-          class='btn btn_primary'
+          class={`btn btn_primary`}
           href={`/pokemons/list-serv/?offset=${currentOffset.value - 10}`}
         >
           Anteriores
@@ -52,8 +50,8 @@ export default component$(() => {
         </Link>
       </div>
 
-      <div class='mb-3 text-3xl'>Listado </div>
-      <div class='flex gap-x-20 gap-y-3 w-[25rem] flex-wrap'>
+      <div class='mb-3 text-3xl'>Listado Server</div>
+      <div class='flex gap-x-20 gap-y-3 w-[90%] flex-wrap px-10 md:px-20'>
         {
           pokemonList.map(pokemon => (
             <div id='pokemon_item'
@@ -70,9 +68,6 @@ export default component$(() => {
           ))
         }
       </div>
-
-     
-
     </>
   )
 });

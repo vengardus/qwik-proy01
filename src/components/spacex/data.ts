@@ -1,0 +1,1 @@
+export const SPACEX_LAUNCHES_LIST_LIMIT = 7

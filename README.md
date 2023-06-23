@@ -1,5 +1,11 @@
 # First project with qwik
 
+## Requirements
+
+- node v.18.
+- vscode
+- yarn 1.22
+
 ## Getting started
 
 ```shell
@@ -76,3 +82,21 @@ yarn run serve
     - Modify package.json
       - modify script "serve"
         "serve": "ORIGIN httpś://qwik-proy01-production.up.railway.app node server/entry.express"
+
+
+
+
+## Ayuda memoria
+
+### Get Fetch
+
+- Obtener el Json del get response y copiar al portapapel
+- Crear un archivo para definir la interface (src/interface)
+  - Ejm: src/interface/spacexListResponse.ts
+- En el archivo creado ejecutar de la paleta de comandos: Paste JSON as Code (indicar nombre para la interface)
+  - Ejm: export interface ISpacexListResponse
+- Opcionalmente se puede crear una interface reducida, con los datos que se utilizarán
+- Crear un componente en src/helpers que haga el fetch y devuelva el response. Si se creó una interface reducida
+crearla a partir de un map del response data.
+- Desde el route correspondiente crear una función routeLoader$ que llame al componente, el cual devuelve una señal
+- 
