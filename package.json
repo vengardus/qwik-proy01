@@ -7,11 +7,11 @@
   "private": true,
   "scripts": {
     "build": "qwik build",
+    "build.all": "yarn run build && yarn run build.server",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
     "build.server": "vite build -c adapters/express/vite.config.ts",
     "build.types": "tsc --incremental --noEmit",
-    "build.all": "yarn run build && yarn run build.server",
     "deploy": "echo 'Run \"npm run qwik add\" to install a server adapter'",
     "dev": "vite --mode ssr",
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
@@ -42,11 +42,12 @@
     "tailwindcss": "^3.3.1",
     "typescript": "5.0.4",
     "undici": "5.22.1",
-    "vite": "4.3.5",
+    "vite": "4.3.9",
     "vite-tsconfig-paths": "4.2.0"
   },
   "dependencies": {
     "@unpic/qwik": "^0.0.19",
-    "openai": "^3.2.1"
+    "openai": "^3.2.1",
+    "yarn": "^1.22.19"
   }
 }

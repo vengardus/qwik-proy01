@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { type Products } from "~/interface/efrTiendaCategories";
-import { ProductsItem } from "./productsItem";
+import { ProductsItem } from "./ProductsItem";
 
 interface IProps {
   products: Products

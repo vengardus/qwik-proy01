@@ -2,7 +2,6 @@ import { component$ } from "@builder.io/qwik";
 import { Image } from "@unpic/qwik";
 import { CURRENCIES, whatsappData } from "./data";
 import { type ProductsDatum } from "~/interface/efrTiendaCategories";
-import { Link } from "@builder.io/qwik-city";
 
 interface IProps {
   product: ProductsDatum
