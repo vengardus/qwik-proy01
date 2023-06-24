@@ -1,6 +1,6 @@
 # First project with qwik
 
-url: qwik-proy01-production.up.railway.app
+url: https://qwik-proy01-production.up.railway.app
 
 ## Requirements
 
