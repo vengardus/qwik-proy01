@@ -1,9 +1,7 @@
 import { type ISpacexLaunchListResponse } from '~/interface/spacexLaunchListResponse';
 import { type ISpacexLaunchSmall } from '~/interface/spacexLaunchSmall';
 import { SPACEX_LAUNCHES_LIST_LIMIT } from '~/components/spacex/data';
-
-const URL_BASE = 'https://api.spacexdata.com/v3/launches'
-
+import { URL_BASE } from '~/components/spacex/data';
 
 export const getSmallSpacexLaunch= async(offset:number=0, limit:number=SPACEX_LAUNCHES_LIST_LIMIT): Promise<ISpacexLaunchSmall[]> => {
   console.log('getSmall', offset)

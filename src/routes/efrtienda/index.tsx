@@ -6,7 +6,7 @@ import { getEfrTiendaCategories } from '~/helpers/getEfrTiendaCategories';
 import { type IEfrTiendaCategories } from '~/interface/efrTiendaCategories';
 
 export const useEfrTiendaCategories = routeLoader$<IEfrTiendaCategories>(async () => {
-  return await getEfrTiendaCategories()
+  return getEfrTiendaCategories()
 })
 
 export default component$(() => {
@@ -19,8 +19,8 @@ export default component$(() => {
     <div class='bg-white text-black'>
       <About />
       {
-        location.isNavigating
-        ? <div>Loading...</div>
+        (location.isNavigating)
+        ? <div class='text-5xl'>Loading...</div>
         : <CategoriesList categories={categories}/>
       }
     </div>

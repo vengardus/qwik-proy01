@@ -41,12 +41,13 @@ export default component$(() => {
           : <LaunchesList launches={launches} />
       }
       <div class='flex mt-4 justify-center w-full space-x-5'>
-        <Link href={`http://localhost:5173/spacex/launches/?offset=${currentOffset.value - SPACEX_LAUNCHES_LIST_LIMIT}`}
+
+        <Link href={`/spacex/launches/?offset=${currentOffset.value - SPACEX_LAUNCHES_LIST_LIMIT}`}
           class={`btn btn-primary bg-orange-500 text-gray-800 hover:bg-orange-700 hover:text-white 
           ${(currentOffset.value - SPACEX_LAUNCHES_LIST_LIMIT)<0? 'hidden':'block'}`}>
           Anteriores
         </Link>
-        <Link href={`http://localhost:5173/spacex/launches/?offset=${currentOffset.value + SPACEX_LAUNCHES_LIST_LIMIT}`}
+        <Link href={`/spacex/launches/?offset=${currentOffset.value + SPACEX_LAUNCHES_LIST_LIMIT}`}
           class='btn btn-primary bg-orange-500 text-gray-800 hover:bg-orange-700 hover:text-white'>
           Siguientes
         </Link>
