@@ -52,7 +52,7 @@ export const navigationMenu:IMenuOption[] = [
     href: '/efrtienda',
     title: 'EFRTienda',
     description: 'Sitio Web de venta de equipos biométricos y captura de datos.',
-    detail:'Utilizará api creada con Strapi (strapi-demo), alojada en Render.com',
+    detail:'Obtiene datos desde Supabase',
     image:'biometria.jpg',
     isProject:true
   },
@@ -60,7 +60,7 @@ export const navigationMenu:IMenuOption[] = [
     name: 'Next.js 13 Proj1',
     href: 'https://nextjs13-firstproject.vercel.app/',
     title: 'Proyecto Ejm Next.js',
-    description: 'Primero proyecto con Next.js 13',
+    description: 'Primer proyecto con Next.js 13',
     detail:'Jugando con Next.js',
     image:'nextjs-proj01.png',
     isProject:true

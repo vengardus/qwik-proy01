@@ -46,8 +46,10 @@
     "vite-tsconfig-paths": "4.2.0"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.26.0",
     "@unpic/qwik": "^0.0.19",
     "openai": "^3.2.1",
+    "supabase-auth-helpers-qwik": "^0.0.3",
     "yarn": "^1.22.19"
   }
 }

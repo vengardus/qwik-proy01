@@ -7,9 +7,9 @@ interface IProps {
   product: ProductsDatum
 }
 
-export const ProductsItem = component$(({product}:IProps) => {
-  const currencySymbol = (product.attributes.currency == CURRENCIES.pen.code) ? 'S/.' : 'US$'
-  const whatsappMsg = `${whatsappData.msg}Estoy interesado en el modelo ${product.attributes.model}`
+export const ProductsItem = component$(({product}:any) => {
+  const currencySymbol = (product.currency == CURRENCIES.pen.code) ? 'S/.' : 'US$'
+  const whatsappMsg = `${whatsappData.msg}Estoy interesado en el modelo ${product.model}`
   
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappData.phone}&text='${whatsappMsg}'`
 
@@ -18,20 +18,20 @@ export const ProductsItem = component$(({product}:IProps) => {
       <div class="w-[60%] md:w-full h-[16rem]  rounded-2xl bg-gray-100 border-2">
         <Image
           class='h-full max-h-[25rem] object-fixed p-1.5'
-          alt={product.attributes.name}
+          alt={product.name}
           // src={product.attributes.image.data.attributes.url}
-          src={product.attributes.image_url}
+          src={product.image_url}
           width={450}
           height={450}
         />
       </div>
 
       <div class="text-[15px] font-bold uppercase text-center">
-        {product.attributes.name}
+        {product.name}
       </div>
 
       <div class="text-[17px] font-bold uppercase text-center">
-        {product.attributes.model}
+        {product.model}
       </div>
 
       {/* <div class="text-xl text-center">
@@ -41,7 +41,7 @@ export const ProductsItem = component$(({product}:IProps) => {
       {
         <div class="flex space-x-3 text-[1.17em] font-bold">
           <span>{currencySymbol}</span>
-          <span>{product.attributes.price.toFixed(2)}</span>
+          <span>{product.price.toFixed(2)}</span>
         </div>
       }
 

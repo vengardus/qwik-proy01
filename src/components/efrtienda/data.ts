@@ -1,3 +1,5 @@
+import { IMenuOption } from "../shared/navbar/data"
+
 export const URL_PRODUCTS = 'https://strapi-demo-cq3k.onrender.com/api/products?populate=*'
 export const URL_CATEGORIES = 'https://strapi-demo-cq3k.onrender.com/api/categories?populate=*'
 
@@ -42,4 +44,36 @@ export const aboutDetails = [
       ]
     },
   
+  ]
+
+
+  export const navigationMenu:IMenuOption[] = [
+    {
+      name: 'Productos',
+      href: '/pokemon',
+      title: 'Productos',
+      description: 'Listado de pokemones y sus habilidades',
+      detail:'Obtiene datos de la Api PokeApi',
+      image:'pokemon1.png',
+      isProject:false,
+      childs: [
+        {
+          title:'Pistolas',
+          href: '/pokemon'
+        },
+        {
+          title:'Relojes',
+          href: '/pokemons/list-serv/'
+        },
+      ]
+    },
+    {
+      name: 'About',
+      href: '#about',
+      title: 'About',
+      description: 'Listado de Lanzamientos de SpaceX',
+      detail:'Obtiene datos de su Api pública.',
+      image:'spacex4.jpg',
+      isProject:true,
+    },
   ]

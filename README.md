@@ -1,14 +1,14 @@
-# First project with qwik
+# Primer proyecto Qwik
 
 url: https://qwik-proy01-production.up.railway.app
 
-## Requirements
+## Requerimientos
 
 - node v.18.
 - vscode
 - yarn 1.22
 
-## Getting started
+## Creando Proyecto
 
 ```shell
 yarn create qwik
@@ -19,21 +19,21 @@ yarn install
 yarn start
 ```
 
-## Install Tailwind
+## Instalando Tailwind
 
 ```shell
 yarn qwik add tailwind
 ```
 
-## Developing
+## Desarrollando
 
-- Generate interfase for fecth (VsCode)
-  - install extension: Paste JSON as code
-  - Copy any json response to clipboard
-  - In the Command Palette type: Paste JSON ... (enter)
+- Generar Interface para data obtenida por fetch (VSCode)
+  - instalar extension: Paste JSON as code
+  - Copy el json response al portapapeles
+  - Enel comando Palette type: Paste JSON ... (enter)
   - Paste
 
-- Environment variables
+- Variables de entorno
   - Rename .env.template por .env  
 
 - Consulting open AI
@@ -42,13 +42,16 @@ yarn qwik add tailwind
 yarn add openai
 ```
 
-- Forms
+- Formularios
   - use routeAction$
-  - Validate Forms: Qwik comes integrated with the Typescript library Zod
+  - Validate Forms: Qwik viene integrado con la libreria Typescript Zod
 
-## Deploy to Railway
+- Supabase
+  yarn add @supabase/supabase-js supabase-auth-helpers-qwik
 
-- Integrated the node adapter
+## Deploy a Railway
+
+- Integrar node adapter
 
 ```shell
 yarn run qwik add express
@@ -62,31 +65,28 @@ yarn run build.server
 yarn run serve
 ```
 
-- Modify package.json
-  - (add in "scripts")
+- Modificar package.json
+  - (agregar en "scripts")
 
   ```js
   "build.all": "yarn run build && yarn run build.server"
   ```
 
-- Add project in Railway (dashboard) from Github repo (select myProjectjectQwik)
+- Agrear proyecto en Railway (dashboard) desde Github repo (select myProjectjectQwik)
 
-- Config project in Railway
-  - Go Settings
+- Configurar proyecto en Railway
+  - ir a Settings
     - Modify Build - Build command: yarn run build.all
     - Modify Deploy - Start command: yarn run serve
-  - Wait for deploying
-  - Go Settings - Environment
+  - Esperar por deploying
+  - Ir a  Settings - Environment
     - Domains: Generate Domain
     - Click url (Ready!!!)
-  - Solution error : Cross-site POST (if exist)
-    - Copy url project : fpr example : qwik-proy01-production.up.railway.app
-    - Modify package.json
-      - modify script "serve"
+  - Solución a posible error : Cross-site POST (if exist)
+    - Copiar url project : por ejemplo : qwik-proy01-production.up.railway.app
+    - Modificar package.json
+      - modificar script "serve"
         "serve": "ORIGIN httpś://qwik-proy01-production.up.railway.app node server/entry.express"
-
-
-
 
 ## Ayuda memoria
 
@@ -101,34 +101,3 @@ yarn run serve
 - Crear un componente en src/helpers que haga el fetch y devuelva el response. Si se creó una interface reducida
 crearla a partir de un map del response data.
 - Desde el route correspondiente crear una función routeLoader$ que llame al componente, el cual devuelve una señal
--
-
-## Express Server
-
-This app has a minimal [Express server](https://expressjs.com/) implementation. After running a full build, you can preview the build using the command:
-
-```
-yarn serve
-```
-
-Then visit [http://localhost:8080/](http://localhost:8080/)
-
-## Express Server
-
-This app has a minimal [Express server](https://expressjs.com/) implementation. After running a full build, you can preview the build using the command:
-
-```
-yarn serve
-```
-
-Then visit [http://localhost:8080/](http://localhost:8080/)
-
-## Express Server
-
-This app has a minimal [Express server](https://expressjs.com/) implementation. After running a full build, you can preview the build using the command:
-
-```
-yarn serve
-```
-
-Then visit [http://localhost:8080/](http://localhost:8080/)

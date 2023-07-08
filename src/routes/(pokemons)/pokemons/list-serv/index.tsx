@@ -13,6 +13,8 @@ export const usePokemonList = routeLoader$<ISmallPokemon[]>(async ({ query, redi
   return await getSmallPokemons(offset)
 })
 
+
+
 // // Otra forma de obtebner los párametros de la url
 // const getParameter = (location: RouteLocation, parm: string) => {
 //   return location.url.searchParams.get(parm)

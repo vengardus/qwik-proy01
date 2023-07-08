@@ -1,14 +1,24 @@
 import { component$, useSignal, $ } from '@builder.io/qwik';
-// import { QwikLogo } from '../../icons/qwik';
-// import styles from './navbar.module.css';
 import { Link } from '@builder.io/qwik-city';
-import { navigationMenu } from './data';
+import { type IMenuOption, navigationMenu as navMenu } from './data';
 
-const logo = '/assets/img/logo-gardus.png'
 
-export default component$(() => {
+interface iProps {
+  navigationMenu?: IMenuOption[],
+  isFixed?: boolean,
+  colorClass?: string,
+  logo?: string
+}
+
+const positionFixedClass = 'fixed top-0 left-0 right-0 z-40 h-[58px]'
+
+export default component$(({
+  navigationMenu = navMenu,
+  isFixed = true,
+  colorClass = 'bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700',
+  logo = '/assets/img/logo-gardus.png'
+}: iProps) => {
   const mainMenu = useSignal(false)
-
 
   const changeDropdownMenu = $((submenu: string) => {
     const elementsDropDown = document.getElementsByClassName('dropNavBar');
@@ -29,14 +39,18 @@ export default component$(() => {
     mainMenu.value = !mainMenu.value
   })
 
+
   return (
-    <nav class="bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <nav class={`w-full ${colorClass} ${!isFixed ? '' : positionFixedClass}`}>
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2 pr-4">
 
         {/* Logo */}
-        <Link href="/" class="flex items-center">
-          <img src={logo} class="" alt="Ismytv Logo" width={120} height={20} />
-        </Link>
+        {
+          (logo) &&
+          <Link href="/" class="flex items-center">
+            <img src={logo} class="" alt="Ismytv Logo" width={120} height={20} />
+          </Link>
+        }
 
         {/* Icon Menu Small Screen */}
         <button
@@ -90,17 +104,17 @@ export default component$(() => {
                             <li key={subitem.title}>
                               <Link
                                 href={subitem.href}
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                class="block px-4 py-2 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                 {subitem.title}
                               </Link>
                             </li>
 
-                            /* <div class="py-1">
-                              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Sign out</a>
-                            </div> */
 
                           ))
                         }
+                        {/* <div class="py-1">
+                              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Sign out</a>
+                            </div> */}
                       </ul>
                     </div>
                   </li>
@@ -111,6 +125,5 @@ export default component$(() => {
         </div>
       </div>
     </nav>
-
   )
 });
