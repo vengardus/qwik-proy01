@@ -1,13 +1,13 @@
 import { component$ } from "@builder.io/qwik";
 import { Image } from "@unpic/qwik";
 import { CURRENCIES, whatsappData } from "./data";
-import { type ProductsDatum } from "~/interface/efrTiendaCategories";
+import { type IProduct } from "~/interface/efrTiendaCategories";
 
 interface IProps {
-  product: ProductsDatum
+  product: IProduct
 }
 
-export const ProductsItem = component$(({product}:any) => {
+export const ProductsItem = component$(({product}:IProps) => {
   const currencySymbol = (product.currency == CURRENCIES.pen.code) ? 'S/.' : 'US$'
   const whatsappMsg = `${whatsappData.msg}Estoy interesado en el modelo ${product.model}`
   

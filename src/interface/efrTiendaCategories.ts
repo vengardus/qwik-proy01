@@ -10,10 +10,10 @@ export interface IEfrTiendaCategoriesDatum {
   name:        string;
   created_at:   string;
   updated_at:   string;
-  products:    Product[];
+  products:    IProduct[];
 }
 
-export interface Product {
+export interface IProduct {
   id:         number;
   name:        string;
   description: string;

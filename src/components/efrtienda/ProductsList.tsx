@@ -1,9 +1,9 @@
 import { component$ } from "@builder.io/qwik";
-import { type Product } from "~/interface/efrTiendaCategories";
+import { type IProduct } from "~/interface/efrTiendaCategories";
 import { ProductsItem } from "./ProductsItem";
 
 interface IProps {
-  products: Product[]
+  products: IProduct[]
 }
 
 export const ProductsList = component$(({products}:IProps) => {
