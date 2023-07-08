@@ -1,6 +1,6 @@
 # Primer proyecto Qwik
 
-url: https://qwik-proy01-production.up.railway.app
+url: https://main--qwik-first-project.netlify.app/
 
 ## Requerimientos
 
@@ -87,6 +87,33 @@ yarn run serve
     - Modificar package.json
       - modificar script "serve"
         "serve": "ORIGIN httpś://qwik-proy01-production.up.railway.app node server/entry.express"
+
+## Deploy a Netlify
+
+- Ver https://qwik.builder.io/docs/deployments/netlify-edge/
+- Crear cuenta en Netlify
+- Agregar adaptador Netlify al proyecto
+  - yarn run qwik add netlify-edge
+- Probar:
+  - yarn run build.server
+- Subir proyecto a github
+- Hacer el deploy
+  - yarn run build
+  - seguir pasos
+    - create y confiure new site
+    - aceptar team
+    - site name: en blanco para generar nombre aleatorio, luego se cambia
+    - esperar creación deploy (pedirá autorización)
+- Refrescar dashboard de Netlify, aparecerá el proyecto creado
+- Modificar configuración
+  - Elegir proyecto
+  - Ir a  Site Configuration
+    - elegir Change site name
+  - It a Depĺoys -> Deploy settings -> Environment variables
+    - Agregar las variables del proyecto
+  - Ir a Deploys -> Deploy settings -> Repository
+    - Repository, linkear al proyecto en el repositorio github
+    - Hacer deploy
 
 ## Ayuda memoria
 
