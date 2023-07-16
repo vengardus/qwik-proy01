@@ -3,7 +3,7 @@ import { type IEfrTiendaCategories } from "~/interface/efrTiendaCategories";
 import { CategoriesItem } from "./CategoriesItem";
 
 interface IProps {
-  categories: IEfrTiendaCategories
+  categories: IEfrTiendaCategories | undefined
 }
 
 export const CategoriesList = component$(({categories}:IProps) => {
@@ -13,11 +13,11 @@ export const CategoriesList = component$(({categories}:IProps) => {
       {
         categories?.data?.map(category => (
           <CategoriesItem
-            key={ category.id } 
-            category={ category } 
+          key={ category.id } 
+          category={ category } 
           />
-        ))
-      }
+          ))
+        }
     </div>
   )
 });

@@ -6,26 +6,24 @@ import { getSmallSpacexLaunch } from '~/helpers/getSmallSpacexLaunch';
 import { type ISpacexLaunchSmall } from '~/interface/spacexLaunchSmall';
 
 export const useSpacexLaunchesList = routeLoader$<ISpacexLaunchSmall[]>(async ({ query, redirect, pathname }) => {
+  console.log('routeLoader Spacex')
   const offset = Number(query.get('offset') || '0')
   console.log('get', offset, pathname)
   if (offset < 0 || isNaN(offset)) {
-    console.log('redirect')
     redirect(301, pathname)
     return []
   }
-  console.log('get2', offset, typeof(offset))
   return await getSmallSpacexLaunch(offset)
 })
 
 
 export default component$(() => {
+  console.log('component Spacex')
   const location = useLocation()
   
   const currentOffset = useComputed$<number>(() => {
     const offSetString = new URLSearchParams(location.url.search)
-    console.log('string', offSetString.get('offset'))
     const offSetNumber = Number(offSetString.get('offset') || 0);
-    console.log(offSetNumber)
     return (offSetNumber > 0)? offSetNumber : 0
   });
 
